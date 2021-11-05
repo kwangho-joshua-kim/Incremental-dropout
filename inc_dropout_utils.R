@@ -357,7 +357,8 @@ variance.bootstrap <- function(ifvals, nbs = 5000) {
 # draw curve for estimated incremental effects with 95% pointwise CI and CB
 plot.delta.curve <- 
   function(delta.seq, est.eff, eff.ll, eff.ul, eff.ll2, eff.ul2, 
-           tp="", outcome.name="Y", max.y=NULL, min.y=NULL) {
+           tp="", outcome.name="Y", max.y=NULL, min.y=NULL, 
+           est.eff.col="dimgrey", est.eff.lwd=1.5,  par.new=F) {
     
     outcome.name <- simpleCap(outcome.name)
     if (is.null(max.y) | is.null(min.y)) {
@@ -371,12 +372,12 @@ plot.delta.curve <-
             col = "gainsboro", border = NA); par(new=T)
     polygon(c(delta.seq, rev(delta.seq)), c(eff.ul, rev(eff.ll)),
             col = "gray70", border = NA); par(new=T)
-    plot(delta.seq, est.eff, type="l", lwd=1.5, col="dimgrey", 
-         xlab=NA, ylab=NA, ylim=c(min.y, max.y));  par(new=F)
+    plot(delta.seq, est.eff, type="l", lwd=1.5, col=est.eff.col, 
+         xlab=NA, ylab=NA, ylim=c(min.y, max.y)) 
     abline(v = 1, col="darkblue", lwd=1.5, lty=3)
     title(main=paste("Estimated Probability of ",outcome.name," (T=", tp, ") ", sep=""),
           xlab=expression(paste("odds ratio ",delta,sep="")), ylab=expression(Psi(delta)))
-    
+    par(new=par.new)
   }
 
 
