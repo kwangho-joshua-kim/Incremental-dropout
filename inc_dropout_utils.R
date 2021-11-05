@@ -377,7 +377,7 @@ plot.delta.curve <-
     abline(v = 1, col="darkblue", lwd=1.5, lty=3)
     title(main=paste("Estimated Probability of ",outcome.name," (T=", tp, ") ", sep=""),
           xlab=expression(paste("odds ratio ",delta,sep="")), ylab=expression(Psi(delta)))
-    par(new=par.new)
+    par(new=par.new) # if overlay needed
   }
 
 
